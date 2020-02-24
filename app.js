@@ -1,10 +1,21 @@
 
 const express = require("express")
+const https = require("https")
 
 const app = express()
 
 
 app.get('/', (req, res) => {
+
+    const url = "https://api.openweathermap.org/data/2.5/weather?q=Riodejaneiro&appid=7ba47c67d4ddcae02c509927afe006ac&units=metric"
+    
+    https.get(url, (response)=> {
+        console.log(response);
+        
+    })
+
+
+
     res.send("Server is up and running")
 })
 
