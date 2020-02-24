@@ -9,9 +9,18 @@ app.get('/', (req, res) => {
 
     const url = "https://api.openweathermap.org/data/2.5/weather?q=Riodejaneiro&appid=7ba47c67d4ddcae02c509927afe006ac&units=metric"
     
-    https.get(url, (response)=> {
-        console.log(response);
+    https.get(url, (response) => {
+        console.log(response.statusCode);
         
+        response.on("data", (data) => {
+           const weatherDate = JSON.parse(data)
+           const temp = weatherDate.main.temp
+           const weatherDescription = weatherDate.weather[0].description
+           console.log(weatherDescription);
+           
+           
+        })
+
     })
 
 
