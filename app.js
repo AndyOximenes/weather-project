@@ -16,16 +16,17 @@ app.get('/', (req, res) => {
            const weatherDate = JSON.parse(data)
            const temp = weatherDate.main.temp
            const weatherDescription = weatherDate.weather[0].description
-           console.log(weatherDescription);
-           
+           const icon = weatherDate.weather[0].icon
+           const imgURL = `http://openweathermap.org/img/wn/${icon}@2x.png`
+           res.write(`<h1>The temperature in Rio de Janeiro is ${temp} degrees Celcius</h1>`)
+           res.write(`The weather is currently <strong>"${weatherDescription}"</strong>`)
+           res.write(`<p><img src="${imgURL}"></p>`)
+           res.send()
+           console.log(icon);
            
         })
 
     })
-
-
-
-    res.send("Server is up and running")
 })
 
 
